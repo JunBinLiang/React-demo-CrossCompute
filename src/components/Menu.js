@@ -77,14 +77,16 @@ export default function CustomizedMenus({changeTitle}) {
 				  Home
 				</NavLink>
 			</StyledMenuItem>
+			
 			<StyledMenuItem>
 			  <ListItemIcon>
-				<DraftsIcon fontSize="small" />
+				<InboxIcon fontSize="small" />
 			  </ListItemIcon>
 			  	<NavLink exact activeClassName='Navbar-active' to='/demo1' onClick={()=>{changeTitle("Demo1")}}>
 				  Demo1
 				</NavLink>
 			</StyledMenuItem>
+			
 			<StyledMenuItem>
 			  <ListItemIcon>
 				<InboxIcon fontSize="small" />
@@ -93,12 +95,22 @@ export default function CustomizedMenus({changeTitle}) {
 				  Demo2
 				</NavLink>
 			</StyledMenuItem>
+			
 			<StyledMenuItem>
 			  <ListItemIcon>
 				<InboxIcon fontSize="small" />
 			  </ListItemIcon>
 				<NavLink exact activeClassName='Navbar-active' to='/demo3' onClick={()=>{changeTitle("Demo3")}}>
 				  Demo3
+				</NavLink>
+			</StyledMenuItem>
+
+			<StyledMenuItem>
+			  <ListItemIcon>
+				<InboxIcon fontSize="small" />
+			  </ListItemIcon>
+				<NavLink exact activeClassName='Navbar-active' to='/demo4' onClick={()=>{changeTitle("Demo4")}}>
+				  Demo4
 				</NavLink>
 			</StyledMenuItem>
 
