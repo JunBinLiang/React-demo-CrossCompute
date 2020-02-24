@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Dropzone from './Dropzone';
 import ShowFile from './Showfile';
 import "./Upload.css";
+import CardList from "./cardlist"
+
 class Upload extends Component {
 	
 	
@@ -78,6 +80,7 @@ class Upload extends Component {
 			</button>
 		
 			<ShowFile files={this.state.files}/>
+			<CardList/>
 		</div>
 
 	);

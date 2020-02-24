@@ -1,11 +1,45 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import Uppy from '@uppy/core';
 import Tus from '@uppy/tus';
 import { Dashboard } from '@uppy/react';
 import '@uppy/core/dist/style.css';
 import '@uppy/dashboard/dist/style.css';
+import Popup from "reactjs-popup";
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
+import MyCard from './card'
 //const Transloadit = require('@uppy/transloadit');
 const XHRUpload = require('@uppy/xhr-upload')
+
+
+
+
+function ClickbleCard(props) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+	  <MyCard name={props.file.data.name} click={handleShow}/>;
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{props.file.data.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>File Data</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
 
 
 
@@ -16,10 +50,9 @@ class Demo2 extends Component {
       files: [],
     };  
 	this.addfile = this.addfile.bind(this);
-	this.sendRequest = this.sendRequest.bind(this);
     this.uppy = Uppy();
-    this.uppy.use(XHRUpload, { endpoint: 'http://localhost:5000/upload',method:'post' });
-    
+    this.uppy.use(XHRUpload, { endpoint: 'http://localhost:5000/upload',method:'post' });  
+	
 	/*this.uppy.on('upload', (data) => {
   		// Do something   cleaning?
 		console.log("upload");
@@ -29,11 +62,20 @@ class Demo2 extends Component {
     	});
 		Promise.all(promises);
 	});*/
-	this.uppy.on('file-added',this.addfile);
+	  
+	  
+	//this.uppy.on('file-added',this.addfile);
+
+	this.uppy.on('upload-success', (file, response) => {
+		console.log("upload success")
+		console.log(file);
+		this.addfile(file);
+	});
+	  
   }
 	
 
-  sendRequest(file) {
+  /*sendRequest(file) {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
       req.upload.addEventListener("load", event => {
@@ -45,7 +87,7 @@ class Demo2 extends Component {
       req.open("POST", "http://localhost:5000/upload");
       req.send(formData);
     });
-  }	
+  }	*/
 	
 	
   addfile(file){
@@ -57,15 +99,24 @@ class Demo2 extends Component {
     this.uppy.close()
   }
 	
+	
   //The <Dashboard /> component supports all @uppy/dashboard options as props.	
-  render() {
-    return(
-		<div>
-			<h1>Demo2</h1>
-			<Dashboard uppy={this.uppy} {...this.props}/>   
-		</div>
-		
-	);
+   render() {
+		const dataset = this.state.files.map((file) =>{
+			console.log(file)
+			return <ClickbleCard file={file}/>
+		});
+	   
+		return(
+			<div>
+				 <h1>Demo2</h1>
+				 <Dashboard uppy={this.uppy} {...this.props}/>
+				 <div style={{display:'flex',justifyContent:'space-around'}}>
+					{dataset}
+				 </div>
+			</div>
+
+		);
   }
 }
 
