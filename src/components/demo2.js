@@ -9,6 +9,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import MyCard from './card'
+import CardDeck from 'react-bootstrap/CardDeck'
 //const Transloadit = require('@uppy/transloadit');
 const XHRUpload = require('@uppy/xhr-upload')
 
@@ -111,9 +112,8 @@ class Demo2 extends Component {
 			<div>
 				 <h1>Demo2</h1>
 				 <Dashboard uppy={this.uppy} {...this.props}/>
-				 <div style={{display:'flex',justifyContent:'space-around'}}>
-					{dataset}
-				 </div>
+				 <CardDeck>{dataset}</CardDeck>
+				 
 			</div>
 
 		);
@@ -122,6 +122,6 @@ class Demo2 extends Component {
 
 Demo2.defaultProps = {
     width: 450,
-	height: 500
+	height: 400
 };
 export default Demo2;

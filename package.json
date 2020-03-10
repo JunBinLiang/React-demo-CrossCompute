@@ -27,6 +27,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "reactjs-popup": "^1.5.0",
+    "recharts": "^2.0.0-beta.1",
     "redux": "4.0.0",
     "uppy": "^1.8.0"
   },
