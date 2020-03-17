@@ -131,7 +131,6 @@ class MyScatter extends Component {
 			  top: 20, right: 20, bottom: 20, left: 20,
 			}}
 		  >
-			//<CartesianGrid />
 			<XAxis type="number" dataKey="x" name="stature" unit="cm" />
 			<YAxis type="number" dataKey="y" name="weight" unit="kg" />
 			<Tooltip cursor={{ strokeDasharray: '3 3' }} />
