@@ -144,6 +144,15 @@ export default function CustomizedMenus({changeTitle}) {
 				</NavLink>
 			</StyledMenuItem>
 
+			<StyledMenuItem>
+			  <ListItemIcon>
+				<InboxIcon fontSize="small" />
+			  </ListItemIcon>
+				<NavLink exact activeClassName='Navbar-active' to='/Chart3' onClick={()=>{changeTitle("Chart2")}}>
+				  Chart3
+				</NavLink>
+			</StyledMenuItem>
+
 		  </StyledMenu>
     </div>
   );
