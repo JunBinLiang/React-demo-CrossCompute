@@ -126,16 +126,14 @@ class ScatterPlotOnNearestXY extends Component {
 			  <YAxis />
 				
 			  <MarkSeries
-				data={data1}
+				data={data2}
 				stroke="white"
 				onNearestXY={(datapoint, {index}) => this.setState({index})}
 			  />
 			</XYPlot>
 
 			<XYPlot height={200} width={200}>
-			  
-				<VerticalBarSeries data={data1} 
-								   onNearestXY={(datapoint, {index}) => this.setState({index})}
+				<VerticalBarSeries data={data1} onNearestXY={(datapoint, {index}) => this.setState({index})}
 				  />
 			</XYPlot>
 		</div>
@@ -180,6 +178,7 @@ class Chart3 extends Component {
 		</XYPlot>
 		<br/><br/>
 		<ScatterPlotOnNearestXY/>
+
       </div>
 	);
   }

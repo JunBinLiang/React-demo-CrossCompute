@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { VictoryPie,VictoryChart,VictoryAxis,VictoryBar,VictoryTheme,VictoryScatter } from "victory";
+import { VictoryPie,VictoryChart,VictoryAxis,VictoryBar,VictoryTheme,VictoryScatter,VictoryZoomContainer,VictoryLine
+	   ,VictoryBrushContainer
+	   } from "victory";
 class Char2 extends Component {
   render() {
     return(
@@ -130,29 +132,57 @@ class Chart extends React.Component {
 class Scatter extends React.Component {
   render() {
     return (
-		<VictoryChart
-		  theme={VictoryTheme.material}
-		  domain={{ x: [0, 5], y: [0, 7] }}
-		>
-		  <VictoryScatter
-			style={{ data: { fill: "#c43a31" } }}
-			
-			size={(dataObject)=>{
-				let index=dataObject.index;
-				console.log(dataObject);
-				return (dataObject.data[index].x+dataObject.data[index].y)%10;
-				//return 5;
-			}}
-			labels={({ datum }) => datum.x}
-			data={[
-			  { x: 1, y: 2 },
-			  { x: 2, y: 3 },
-			  { x: 3, y: 5 },
-			  { x: 4, y: 4 },
-			  { x: 5, y: 7 }
-			]}
-		  />
-		</VictoryChart>
+		<div>
+			<VictoryChart
+			  theme={VictoryTheme.material}
+			  domain={{ x: [0, 7], y: [0, 7] }}
+			  containerComponent={<VictoryZoomContainer zoomDomain={{x: [0,10], y: [0, 10]}}/>}
+			>
+			  <VictoryScatter
+				style={{ data: { fill: "#c43a31" } }}
+
+				size={(dataObject)=>{
+					let index=dataObject.index;
+					console.log(dataObject);
+					return (dataObject.data[index].x+dataObject.data[index].y)%10;
+					//return 5;
+				}}
+				labels={({ datum }) => datum.x}
+				data={[
+				  { x: 1, y: 2 },
+				  { x: 2, y: 3 },
+				  { x: 3, y: 5 },
+				  { x: 4, y: 4 },
+				  { x: 5, y: 7 }
+				]}
+			  />
+			</VictoryChart>
+
+			<VictoryLine
+			  containerComponent={
+				<VictoryBrushContainer
+				  brushDomain={{x: [1, 7], y: [-1, 3]}}
+				  brushDimension="y"
+				  brushStyle={{fill: "teal", opacity: 0.2}}
+				/>
+			  }
+			  style={{
+				data: {stroke: "teal"}
+			  }}
+			  data={[
+				{x: 1, y: -3},
+				{x: 2, y: 5},
+				{x: 3, y: -3},
+				{x: 4, y: 0},
+				{x: 5, y: -5},
+				{x: 6, y: 2},
+				{x: 7, y: 0}
+			  ]}
+			/>
+		</div>
+
+
+
     )
   }
 }

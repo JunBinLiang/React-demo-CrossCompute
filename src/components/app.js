@@ -9,6 +9,7 @@ import NavBar from "./NavBar";
 import Char1 from "./chart1";
 import Char2 from "./chart2";
 import Char3 from "./chart3";
+import Char4 from "./chart4";
 export default class App extends Component {
   render() {
     return (
@@ -24,6 +25,7 @@ export default class App extends Component {
 			  <Route exact path='/chart1' component={Char1} />
 			  <Route exact path='/chart2' component={Char2} />
 			  <Route exact path='/chart3' component={Char3} />
+			  <Route exact path='/chart4' component={Char4} />
 			</Switch>
 
 		</div>
